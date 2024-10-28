@@ -1,0 +1,122 @@
+{
+  "users": [
+    {
+      "id": "93d0",
+      "name": "Titus",
+      "email": "titusnj99@gmail.com",
+      "phone": "0798633101"
+    },
+    {
+      "id": "0095",
+      "name": "Monique",
+      "email": "mk@gmail.com",
+      "phone": "0722000000"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I reset my password?",
+      "answer": "To reset your password, go to the login page and click 'Forgot Password'.",
+      "id": "98a5"
+    },
+    {
+      "question": "How do I check my balance?",
+      "answer": "To check your balance, log in to your account and navigate to the 'Balance' section.",
+      "id": "560f"
+    }
+  ],
+  "products": [
+    {
+      "name": "Internet Package",
+      "details": "Our Internet Package includes ...",
+      "id": "30b1"
+    },
+    {
+      "name": "Voice Package",
+      "details": "Our Voice Package includes ...",
+      "id": "0ca3"
+    }
+  ],
+  "tickets": [
+    {
+      "id": "ticket-123",
+      "issue": "My account ",
+      "status": "In Progress"
+    },
+    {
+      "id": "9e80",
+      "issue": "Help me",
+      "status": "New"
+    },
+    {
+      "id": "b4fa",
+      "issue": "I am experiencing slow speeds on my internet",
+      "status": "New"
+    },
+    {
+      "id": "9af3",
+      "issue": "internet",
+      "status": "New"
+    },
+    {
+      "id": "ad16",
+      "issue": "Slow internet speeds",
+      "status": "New"
+    },
+    {
+      "id": "d03f",
+      "issue": "errors with my internet speed",
+      "status": "New"
+    },
+    {
+      "id": "c077",
+      "issue": "2",
+      "status": "New"
+    },
+    {
+      "id": "7b35",
+      "issue": "sss",
+      "status": "New"
+    },
+    {
+      "id": "0ed4",
+      "issue": "2222",
+      "status": "New"
+    },
+    {
+      "id": "f2ed",
+      "issue": "2222",
+      "status": "New"
+    },
+    {
+      "id": "c832",
+      "issue": "1",
+      "status": "New"
+    },
+    {
+      "id": "e92f",
+      "issue": "1",
+      "status": "New"
+    },
+    {
+      "id": "4bed",
+      "issue": "1",
+      "status": "New"
+    },
+    {
+      "id": "3d81",
+      "issue": "1",
+      "status": "New"
+    },
+    {
+      "id": "29bb",
+      "issue": "2",
+      "status": "New"
+    },
+    {
+      "id": "eefc",
+      "issue": "dddd",
+      "status": "New"
+    }
+  ]
+}
