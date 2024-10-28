@@ -6,7 +6,6 @@ const chatbotCloseBtn = document.querySelector(".close-btn");
 
 let userMessage;
 let currentOption = null;
-let inSubOption = false;
 
 const clearChat = () => {
     chatbox.innerHTML = "";
@@ -26,12 +25,12 @@ const createChatLi = (message, className) => {
 const showSubOptionsAfterTicket = () => {
     const subOptionsMessage = `
         What would you like to do next?
-        1. Describe another problem
+        1. Raise another problem/Issue
         2. Return to the main menu
     `;
     chatbox.appendChild(createChatLi(subOptionsMessage, "incoming"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
-    inSubOption = true;
+    currentOption = "subOption"; // Set current option to sub-option
 };
 
 // Function to display tickets
@@ -74,7 +73,7 @@ const showSupportOptions = () => {
     </p>`;
     chatbox.appendChild(createChatLi(optionsMessage, "incoming"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
-    inSubOption = false;
+    currentOption = null;
 };
 
 // Function to display sub-options
@@ -86,13 +85,12 @@ const showSubOptions = () => {
     `;
     chatbox.appendChild(createChatLi(subOptionsMessage, "incoming"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
-    inSubOption = true;
 };
 
 // Main chat handler function
 const handleChat = () => {
-    userMessage = chatInput.value.trim();
-    console.log(userMessage);
+    const userMessage = chatInput.value.trim();
+    console.log(userMessage, "Usermessage");
     if (!userMessage) return;
 
     // Append user's message to chatbox
@@ -104,20 +102,12 @@ const handleChat = () => {
     chatbox.appendChild(thinkingMessage);
     
     
-    if (inSubOption = true) {
+    if (userMessage === "1" && !currentOption) {
         thinkingMessage.remove();
-        if (userMessage === "1") {
-            chatbox.appendChild(createChatLi("Kindly provide information of your challenge/issue:", "incoming"));
-            currentOption = "describeIssue"; // Change to a specific state for describing the issue
-            inSubOption = false;
-        } else if (userMessage === "2") {
-            showSupportOptions();
-            inSubOption = false;
-        } else {
-            showSubOptions();
-        }
-
-    } else if (currentOption === "describeIssue") {
+        chatbox.appendChild(createChatLi("Kindly provide information of your challenge/issue:", "incoming"));
+        currentOption = "describeIssue"; // Change to a specific state for describing the issue
+    }
+    else if (currentOption === "describeIssue") {
         thinkingMessage.remove();
         // Save the described issue to the database
         fetch('http://localhost:3005/tickets', {
@@ -130,8 +120,8 @@ const handleChat = () => {
         .then(response => response.json())
         .then(ticket => {
             const botMessage = `Your issue has been recorded. Your ticket ID is ${ticket.id}. You can track your ticket using this ID.`;
+            console.log(botMessage)
             chatbox.appendChild(createChatLi(botMessage, "incoming"));
-            displayTicket(ticket);
             showSubOptionsAfterTicket();
         })
         .catch(error => {
@@ -140,11 +130,20 @@ const handleChat = () => {
             showSupportOptions();
         });
 
-        currentOption = null; // Reset the state after handling the issue description
-    } else if (userMessage === "1") {
-        thinkingMessage.remove();
-        showSubOptions();
-    } else if (currentOption === "2") {
+        //currentOption = null; // Reset the state after handling the issue description
+    }else if (currentOption === "subOption") {
+        if (userMessage === "1") {
+            // If the user wants to describe another issue
+            chatbox.appendChild(createChatLi("Kindly provide information about your challenge/issue:", "incoming"));
+            currentOption = "describeIssue";
+        } else if (userMessage === "2") {
+            // If the user wants to return to the main menu
+            showSupportOptions();
+        } else {
+            chatbox.appendChild(createChatLi("Invalid option. Please select 1 or 2.", "incoming"));
+            showSubOptionsAfterTicket(); // Show options again if invalid input
+        }
+    }else if (userMessage === "2") {
         fetch('http://localhost:3005/products')
             .then(response => response.json())
             .then(products => {
