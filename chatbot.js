@@ -3,7 +3,6 @@ const sendChatBtn = document.querySelector(".chat-input span");
 const chatbox = document.querySelector(".chatbox");
 const chatbotToggler = document.querySelector(".chatbot-toggler");
 const chatbotCloseBtn = document.querySelector(".close-btn");
-const ticketList = document.getElementById("ticket-list");
 
 let userMessage;
 let currentOption = null;
@@ -39,7 +38,6 @@ const showSubOptionsAfterTicket = () => {
 const displayTicket = (ticket) => {
     const ticketItem = document.createElement("li");
     ticketItem.textContent = `Ticket ID: ${ticket.id}, Issue: ${ticket.issue}, Status: ${ticket.status}`;
-    ticketList.appendChild(ticketItem);
 };
 
 // Function to update user information
@@ -104,12 +102,13 @@ const handleChat = () => {
     // Display a "Thinking..." message while waiting for the response
     const thinkingMessage = createChatLi("Thinking...", "incoming");
     chatbox.appendChild(thinkingMessage);
-
-    if (inSubOption) {
+    
+    
+    if (inSubOption = true) {
         thinkingMessage.remove();
         if (userMessage === "1") {
-            chatbox.appendChild(createChatLi("Please provide the ticket ID you want to track:", "incoming"));
-            currentOption = "1";
+            chatbox.appendChild(createChatLi("Kindly provide information of your challenge/issue:", "incoming"));
+            currentOption = "describeIssue"; // Change to a specific state for describing the issue
             inSubOption = false;
         } else if (userMessage === "2") {
             showSupportOptions();
@@ -118,17 +117,15 @@ const handleChat = () => {
             showSubOptions();
         }
 
-    }
-    
-    if (currentOption === "1") {
+    } else if (currentOption === "describeIssue") {
         thinkingMessage.remove();
-        // Directly create a new ticket without checking FAQs
+        // Save the described issue to the database
         fetch('http://localhost:3005/tickets', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ issue: userMessage, status: "New" })
+            body: JSON.stringify({ issue: userMessage, status: "New" }) // Use the user's message as the issue description
         })
         .then(response => response.json())
         .then(ticket => {
@@ -139,11 +136,14 @@ const handleChat = () => {
         })
         .catch(error => {
             console.error('Error creating ticket:', error);
-            thinkingMessage.remove();
             chatbox.appendChild(createChatLi("There was an error processing your request. Please try again later.", "incoming"));
             showSupportOptions();
         });
-        currentOption = null; // Reset after handling
+
+        currentOption = null; // Reset the state after handling the issue description
+    } else if (userMessage === "1") {
+        thinkingMessage.remove();
+        showSubOptions();
     } else if (currentOption === "2") {
         fetch('http://localhost:3005/products')
             .then(response => response.json())
