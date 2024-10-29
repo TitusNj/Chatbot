@@ -59,69 +59,6 @@
       "status": "Resolved",
       "Attended_by": "Josephine Cherotich",
       "Review": "Excellent"
-    },
-    {
-      "id": "e284",
-      "issue": "xzxzxz",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
-    },
-    {
-      "id": "4bb3",
-      "issue": "sasasaa",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
-    },
-    {
-      "id": "0274",
-      "issue": "sasaa",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
-    },
-    {
-      "id": "4056",
-      "issue": "sasaaa",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
-    },
-    {
-      "id": "e44c",
-      "issue": "asasaa",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
-    },
-    {
-      "id": "e78c",
-      "issue": "sasaas",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
-    },
-    {
-      "id": "bbe0",
-      "issue": "sasas",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
-    },
-    {
-      "id": "797c",
-      "issue": "wqqwq",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
-    },
-    {
-      "id": "c143",
-      "issue": "sasa",
-      "status": "New",
-      "Attended_by": "To be assigned",
-      "Review": "To be assessed"
     }
   ]
 }
