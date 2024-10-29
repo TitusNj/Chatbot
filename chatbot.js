@@ -55,14 +55,17 @@ const displayTicket = (ticket) => {
 
 // Function to update user information
 const updateUserInfo = (newInfo) => {
-    fetch('http://localhost:3005/users', {
+    fetch('http://localhost:3005/users/93d0', {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newInfo)
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log('Response Status:', response.status); // Log the response status
+        return response.json();
+    })
     .then(data => {
         chatbox.appendChild(createChatLi(`Your information has been updated successfully!`, "incoming"));
         showSupportOptions();
@@ -76,15 +79,14 @@ const updateUserInfo = (newInfo) => {
 
 // Function to display support options
 const showSupportOptions = () => {
-    clearChat();
+    //clearChat();
     currentOption = null;
     const optionsMessage = 
     `<p>Hi there 👋<br> How can I help you today? 
         <br id="support">1. Customer support
         <br id="productInformation">2. Product information retrieval
         <br id="Update">3. Update user information
-        <br id="Subscriptions">4. FAQs
-        <br id="Tickets">5. Track ticket    
+        <br id="Subscriptions">4. Track ticket    
     </p>`;
     chatbox.appendChild(createChatLi(optionsMessage, "incoming"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
@@ -225,17 +227,38 @@ const handleChat = () => {
     
             // Parse user message for the update format
             const [key, value] = userMessage.split('=');
+            console.log(`Attempting to update: key = ${key}, value = ${value}`); // Debugging output
             if (key && value) {
                 const newInfo = { [key.trim()]: value.trim() };
                 updateUserInfo(newInfo); // Call function to update info
             } else {
-                chatbox.appendChild(createChatLi("Please provide the information in the format: key=value (e.g., email=myemail@example.com)", "incoming"));
+                chatbox.appendChild(createChatLi("Please provide the information in the format (e.g., email=myemail@example.com)", "incoming"));
             }
             currentOption = null; // Reset after processing update
+    }else if (currentOption === "requestTicketID") {
+        // Fetch ticket information using the provided ticket ID
+        fetch('http://localhost:3005/tickets')
+            .then(response => response.json())
+            .then(tickets => {
+                const ticket = tickets.find(t => t.id.toString() === userMessage);
+                thinkingMessage.remove();
+                const botMessage = ticket
+                    ? `Ticket ID: ${ticket.id}, Issue: ${ticket.issue}, Status: ${ticket.status}`
+                    : "Sorry, no ticket found with that ID. Please check and try again.";
+                chatbox.appendChild(createChatLi(botMessage, "incoming"));
+                showSupportOptions(); // Return to support options after displaying ticket info
+            })
+            .catch(error => {
+                console.error('Error fetching tickets:', error);
+                thinkingMessage.remove();
+                chatbox.appendChild(createChatLi("There was an error processing your request. Please try again later.", "incoming"));
+                showSupportOptions(); // Return to support options in case of error
+            });
+        currentOption = null; // Reset after processing
     }else {
         thinkingMessage.remove();
         if (userMessage === "1") {
-            chatbox.appendChild(createChatLi("Kindly provide information of your challenge/issue:", "incoming"));
+            chatbox.appendChild(createChatLi("How may i be of support to you? Kindly describe your challenge", "incoming"));
             currentOption = "describeIssue"; // Change to a specific state for describing the issue
         }
         else if (userMessage === "2") {
@@ -243,40 +266,14 @@ const handleChat = () => {
             currentOption = "productQuery"; // Set the current option to productQuery
         }else if (userMessage === "3" ) {
             thinkingMessage.remove(); // Remove "Thinking..." message
-            chatbox.appendChild(createChatLi("Please enter the information you want to update in the format: key=value (e.g., email=myemail@example.com)", "incoming"));
+            chatbox.appendChild(createChatLi("Please enter the information you want to update in the format (e.g., email=myemail@example.com)", "incoming"));
             currentOption = "updateUser"; // Set state to handle update
             //currentOption = null;
-        } else if (currentOption === "4") {
-            thinkingMessage.remove();
-            const faqsMessage = `
-                Here are some frequently asked questions:
-                1. How to reset my password?
-                2. How to check my balance?
-                3. How to contact support?
-            `;
-            chatbox.appendChild(createChatLi(faqsMessage, "incoming"));
-            showSupportOptions();
-            currentOption = null;
-        } else if (currentOption === "5") {
-            fetch('http://localhost:3005/tickets')
-                .then(response => response.json())
-                .then(tickets => {
-                    const ticket = tickets.find(t => t.id.toString() === userMessage);
-                    thinkingMessage.remove();
-                    const botMessage = ticket
-                        ? `Ticket ID: ${ticket.id}, Issue: ${ticket.issue}, Status: ${ticket.status}`
-                        : "Sorry, no ticket found with that ID. Please check and try again.";
-                    chatbox.appendChild(createChatLi(botMessage, "incoming"));
-                    showSupportOptions();
-                })
-                .catch(error => {
-                    console.error('Error fetching tickets:', error);
-                    thinkingMessage.remove();
-                    chatbox.appendChild(createChatLi("There was an error processing your request. Please try again later.", "incoming"));
-                    showSupportOptions();
-                });
-            currentOption = null;
-        } 
+        } else if (userMessage === "4" ) {
+            chatbox.appendChild(createChatLi("Please provide your ticket ID to track:", "incoming"));
+            currentOption = "requestTicketID";
+            
+        }   
     }
 }
    
