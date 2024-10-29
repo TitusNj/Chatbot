@@ -3,16 +3,22 @@
     {
       "id": "93d0",
       "name": "Titus",
-      "email": "KK2@gmail.com",
+      "email": "kez@gmail.com",
       "phone": "0798633101",
       "identification Number": "337701231"
-      
     },
     {
       "id": "0095",
       "name": "Monique",
       "email": "mk@gmail.com",
-      "phone": "0722000000",
+      "phone": "0722321000",
+      "identification Number": "353401231"
+    },
+    {
+      "id": "0095",
+      "name": " Karanja",
+      "email": "kj@gmail.com",
+      "phone": "0722000420",
       "identification Number": "353401231"
     }
   ],
@@ -30,6 +36,13 @@
       "id": "0ca3",
       "department": "VAS",
       "Number_of_Product_offered": "3"
+    },
+    {
+      "name": "Data Package",
+      "details": "Our Data Package includes = 20mbs = 10ksh , 100mbs = 20ksh, 1GB  = 499ksh, 3GB = 1000Ksh, 1TB = 3599Ksh",
+      "id": "0ca3",
+      "department": "VAS",
+      "Number_of_Product_offered": "5"
     }
   ],
   "tickets": [
@@ -39,7 +52,6 @@
       "status": "In Progress",
       "Attended_by": "Robert Kihanda",
       "Review": "Good"
-    
     },
     {
       "id": "cd53",
@@ -47,7 +59,146 @@
       "status": "Resolved",
       "Attended_by": "Josephine Cherotich",
       "Review": "Excellent"
+    },
+    {
+      "id": "f327",
+      "issue": "bhbhbhbhb",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "b3f8",
+      "issue": "sasasasa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "617f",
+      "issue": "saasaa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "271c",
+      "issue": "assasasa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "c8e8",
+      "issue": "sasa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "fb69",
+      "issue": "asasasa de",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "571f",
+      "issue": "sasasasa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "944c",
+      "issue": "xrxr",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "0455",
+      "issue": "aannaa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "7706",
+      "issue": "wewewewew",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "4584",
+      "issue": "jnjnj",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "f4ef",
+      "issue": "sasasa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "a077",
+      "issue": "sasasa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "f389",
+      "issue": "sasaas",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "c9e4",
+      "issue": "dsddsds",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "5ff2",
+      "issue": "adada",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "6e99",
+      "issue": "sasasa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "4fd4",
+      "issue": "sasa",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "8a77",
+      "issue": "sasas",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
+    },
+    {
+      "id": "acb7",
+      "issue": "sasaas",
+      "status": "New",
+      "Attended_by": "To be assigned",
+      "Review": "To be assessed"
     }
-
   ]
 }
